@@ -14,10 +14,12 @@ from Products import *
 clients = load_db("Clients.dat")
 products = load_db("Products.dat")
 contacts = load_db("Contacts.dat")
+companies_list = load_db("Companies.dat")
 
 # Function Definitions
 
 # Main
 
-new_product(products, clients)
+
+
 
