@@ -29,10 +29,12 @@ class User():
 
 def company_lookup(companies_list, search = False):
     if search:
-        for company in companies_list:
-            if company.name == search:
-                return company
-        return
+        while True:
+            for company in companies_list:
+                if company.name == search:
+                    return company
+            print("Empresa no existente...")
+            return
     else:
         i = 0
         print("\n----- Lista de Empresas -----\n")
@@ -102,4 +104,19 @@ def new_company(companies_list = []):
         return companies_list
     else:
         print('Creación de empresa cancelada...')
+
+def login_company(companies_list):
+    while True:
+        print("\n----- Inicio -----\n")
+        company_lookup(companies_list)
+        search = input("Ingrese nombre de empresa:\n")
+        company = company_lookup(companies_list, search)
+        user = input("Usuario: ")
+        passcode = input("Contraseña: ")
+        for account in company.users:
+            if account.name == user and account.passcode == passcode:
+                return account
+        print("Las credenciales no fueron reconocidas...")
+        
+    
 
