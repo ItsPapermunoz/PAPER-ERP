@@ -38,3 +38,11 @@ def load_db(x):
         with open(x, "rb") as file:
             y = pkl.load(file)
         return y
+
+def confirm_data():
+    print("\n1. Confirmar\n2. Cancelar")
+    x = int(input("Seleccione la opción deseada: "))
+    if x == 1:
+        return True
+    else:
+        return
