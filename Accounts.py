@@ -100,10 +100,11 @@ def new_account(clients_list, contacts_list):
             print("Alta de cliente cancelada.")
             break
         
-def list_clients(clients_list, lookup = 0, search = None):
+def lookup_client(clients_list, lookup = 0, search = None):
     i = 1
     temp_list = []
     if lookup == 0:
+        print("\n ----- Lista de Clientes -----\n ")
         for client in clients_list:
             print("{}. Clave: {} Nombre: {} Contacto: {}".format(i, client.clave, client.name, client.contact.name))
             i += 1

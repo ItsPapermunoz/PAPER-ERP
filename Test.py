@@ -1,5 +1,5 @@
-list_test = []
-if not list_test:
-    print("False")
-else:
-    print('True')
+
+x = 15 / 100
+y = 949
+z = x *  y
+print(z)

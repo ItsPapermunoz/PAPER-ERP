@@ -20,9 +20,9 @@ def user_input(x, y):
         except ValueError:
             print("Valor inaceptable intente nuevamente...")
 
-def write_db(x, y):
-    with open(y, "wb") as file:
-        pkl.dump(x, file)
+def write_db(object, file_name):
+    with open(file_name, "wb") as file:
+        pkl.dump(object, file)
 
 def load_db(x):
     y = 0
