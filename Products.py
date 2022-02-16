@@ -20,30 +20,30 @@ class Product():
         self.inventory = inventory
         self.supplier = supplier
 
-def new_product(products_list, clients_list):
+def new_product(products_list, clients_list, active_company):
     while True:
         print("\n----- Nuevo Producto -----\n")
         x = len(products_list) + 1
         if x == 1:
-            clave = "{}0001".format(company_prefix)
+            clave = "{}0001".format(active_company.company_prefix)
         elif x >= 2:
-            clave = "{}000{}".format(company_prefix, x)
+            clave = "{}000{}".format(active_company.company_prefix, x)
         elif x >= 10:
-            clave = "{}00{}".format(company_prefix, x)
+            clave = "{}00{}".format(active_company.company_prefix, x)
         elif x >= 100:
-            clave = "{}0{}".format(company_prefix, x)
+            clave = "{}0{}".format(active_company.company_prefix, x)
         else:
             clave = str(x)
         desc = input("Ingrese nombre del nuevo producto: ")
-        price = input("Ingrese precio de lista del nuevo producto: ")
+        price = float(input("Ingrese precio de lista del nuevo producto: "))
         tax = float(input("Ingrese la tasa de impuestos del nuevo producto (Debe ser un decimal): "))
         supplier = input("Ingrese Clave de proveedor, si la desconoce ingrese 'NO': ")
         if supplier == "NO":
-            list_clients(clients_list, 2, "SUPP")
+            lookup_client(clients_list, 2, "SUPP")
             supplier = input("Ingrese la clave del proveedor deseado: ")
-            supplier = list_clients(clients_list, 1, supplier)
+            supplier = lookup_client(clients_list, 1, supplier)
         else:
-            supplier = list_clients(clients_list, 1, supplier)
+            supplier = lookup_client(clients_list, 1, supplier)
         if supplier:
             print("\nVerifique la información de su nuevo producto: ")
             print("Clave: {}\nNombre: {}\nPrecio: {}\nTasa de impuesto: {}\nProveedor: {}".format(clave, desc, price, tax, supplier.rs))
@@ -59,7 +59,21 @@ def new_product(products_list, clients_list):
                 print("Alta cancelada.")
                 break
         else:
-            pass
+                print("Alta cancelada.")
+                break
+
+def lookup_products(product_list, search = None):
+    if search:
+        for product in product_list:
+            if product.clave == search:
+                return product
+        return
+    else:
+        print("\n----- Lista de Productos -----\n")
+        i = 0
+        for product in product_list:
+            i += 1
+            print("{}. Clave: {} Descripción: {}".format(i, product.clave, product.desc))
 
 
     
