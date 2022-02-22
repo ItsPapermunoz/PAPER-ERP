@@ -18,6 +18,7 @@ contacts = load_db("Contacts.dat")
 companies_list = load_db("Companies.dat")
 active_company, active_user = login_company(companies_list)
 sales = load_db("Sales.dat")
+books = load_db("Books.dat")
 
 # Function Definitions
 

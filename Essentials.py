@@ -25,20 +25,19 @@ def write_db(object, file_name):
     with open(file_name, "wb") as file:
         pkl.dump(object, file)
 
-def load_db(x):
-    y = 0
+def load_db(file_name):
     try:
-        with open(x, "rb") as file:
-            y = pkl.load(file) 
+        with open(file_name, "rb") as file:
+            data = pkl.load(file) 
     except FileNotFoundError:
         z = []
-        print("Archivo {} no encontrado. Creando nuevo archivo".format(x))
-        with open(x, "wb") as file:
+        print("Archivo {} no encontrado. Creando nuevo archivo".format(file_name))
+        with open(file_name, "wb") as file:
             pkl.dump(z, file)
     finally:
-        with open(x, "rb") as file:
-            y = pkl.load(file)
-        return y
+        with open(file_name, "rb") as file:
+            data = pkl.load(file)
+        return data
 
 def confirm_data():
     print("\n1. Confirmar\n2. Cancelar")
@@ -49,14 +48,14 @@ def confirm_data():
         return
 
 def date_input():
-    dd = int(input("Dìa: "))
+    dd = int(input("Día: "))
     mm = int(input("Mes: "))
     yyyy = int(input("Año: "))
     date = dt.date(yyyy, mm, dd)
     return date
 
 def date_between(between_1, between_2, date):
-    if date > between_1 and date < between_2:
+    if date >= between_1 and date <= between_2:
         return True
     else:
         return False

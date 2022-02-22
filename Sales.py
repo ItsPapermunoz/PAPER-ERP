@@ -74,6 +74,7 @@ class Sale:
         self.trans = []
         self.client = sel_client(clients_list)
         self.add_line(products_list)
+        self.date = date_input()
         sales_list.append(self)
         write_db(sales_list, "Sales.dat")
         print("Venta: {} registrada exitosamente!".format(self.ref))
