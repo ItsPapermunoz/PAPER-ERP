@@ -1,7 +1,7 @@
-from datetime import timedelta
-from Essentials import *
-
-x = date_input()
-y = timedelta(45)
+x = 500
+z = -250
+y = 350
+x += z
 print(x)
-print(x + y)
+x += y
+print(x)
