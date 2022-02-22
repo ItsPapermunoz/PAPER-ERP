@@ -1,5 +1,7 @@
+from datetime import timedelta
+from Essentials import *
 
-x = 15 / 100
-y = 949
-z = x *  y
-print(z)
+x = date_input()
+y = timedelta(45)
+print(x)
+print(x + y)

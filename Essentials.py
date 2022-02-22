@@ -1,5 +1,6 @@
 # This File Contains Essential Functions for multiple programs
 import pickle as pkl
+import datetime as dt
 
 def CLS():
     # Clears Terminal Screen
@@ -46,3 +47,16 @@ def confirm_data():
         return True
     else:
         return
+
+def date_input():
+    dd = int(input("Dìa: "))
+    mm = int(input("Mes: "))
+    yyyy = int(input("Año: "))
+    date = dt.date(yyyy, mm, dd)
+    return date
+
+def date_between(between_1, between_2, date):
+    if date > between_1 and date < between_2:
+        return True
+    else:
+        return False
