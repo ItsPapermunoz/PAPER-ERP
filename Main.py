@@ -1,7 +1,7 @@
 # File Data
 
 _author_ = "Rodrigo Muñoz"
-_Version_ = "Alpha"
+_Version_ = "'Alpha'"
 
 # Imports
 
@@ -9,6 +9,7 @@ from Essentials import *
 from Accounts import *
 from Products import *
 from Sales import *
+from Accounting import *
 
 # Variable Definitions
 
@@ -22,9 +23,51 @@ books = load_db("Books.dat")
 
 # Function Definitions
 
-def main_menu():
-    print("\n----- PAPER ERP ---- Versión: {} Creado por: {}\nEmpresa: {} Usuario: {}".format(_Version_, _author_, active_company.rs, active_user.name))
+def sales_menu():
+    print("\n----- Menu Ventas -----\n")
 
+def products_menu():
+    print("\n----- Menu Productos -----\n")
+
+def accounting_menu():
+    while True:
+        print("\n----- Menu Contabilidad -----\n")
+        options = ["Nueva Cuenta Contable", "Nueva Transacción", "Borrar Cuenta", "Borrar Transacción", "Reportes", "Salir"]
+        i = 0
+        for option in options:
+            i += 1
+            print("{}. {}".format(i, option))
+        sel = int(input("Seleccione una opción: "))
+        if sel == len(options):
+            break
+
+def accounts_menu():
+    print("\n----- Menu Clientes y Proovedores -----\n")
+
+def main_menu(clients, products, contacts, companies, active_company, active_user, sales, books):
+    while True:
+        print("\n----- PAPER ERP ---- Versión: {} Creado por: {}\nEmpresa: {} Usuario: {}".format(_Version_, _author_, active_company.rs, active_user.name))
+        options = ["Ventas", "Productos", "Contabilidad", "Clientes y Proovedores", "Salir"]
+        i = 0
+        for option in options:
+            i += 1
+            print("{}. {}".format(i, option))
+        sel = int(input("Seleccione una opción: "))
+        if sel == len(options):
+            print("Gracias por haber utilizado PAPER ERP. Hasta pronto!")
+            break
+        if sel == 1:
+            sales_menu()
+        elif sel == 2:
+            products_menu()
+        elif sel == 3:
+            accounting_menu()
+        elif sel == 4:
+            accounts_menu()
+        else:
+            print("Opción no encontrada...")
+
+        
 # Main
 
 main_menu()
