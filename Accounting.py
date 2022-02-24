@@ -23,12 +23,20 @@ class Book:
       self.tran.append(tran)
       self.balance += tran.amount
 
+    def remove_tran(self, tran):
+        amount = tran.amount
+        self.balance -= amount
+        self.tran.remove(tran)
+        
+
 class Transaction:
     def __init__(self, ref, kind, amount, date):
         self.ref = ref
         self.kind = kind
         self.amount = amount
         self.date = date
+    def read(self):
+        print('Transacción: {} por ${} Fecha: {}'.format(self.ref, self.amount, self.date))
 
 # Functions
 
@@ -73,12 +81,21 @@ def new_book(books_list):
     write_db(books_list, "Books.dat")
 
 def del_book(books_list):
+    '''Deletes a book from given booklist, it first displays every book in the list then user selects book to delete'''
     book = lookup_book(books_list)
     if book:
         books_list.remove(book)
     else:
         print("Eliminación de cuenta contable cancelada...")
-    
+
+def del_tran(books_list, ref):
+    '''Removes a transaction from a book object. 
+    Requires ref attribute for it to work since it checks to find given ref in transactions for each book.'''
+    for book in books_list:
+        for tran in book.tran:
+            if ref == tran.ref:
+                book.remove_tran(tran)
+
 def new_transaction(books_list):
     ref = input("Referencia para nueva transacción: ")
     i = 0
@@ -96,7 +113,21 @@ def new_transaction(books_list):
     else:
         print("CANCELADA")
 
+def reports_accounting_balance(books_list):
+    print('\n----- Reporte de Balance -----')
 
+def reports_accounting_book(books_list):
+    print('\n----- Reporte de Cuenta Contable -----')
 
-
-    
+def reports_accounting(books_list):
+    options = ['Balance General', 'Reporte de cuenta', 'Salir']
+    while True:
+        sel = display_menu(options, 'Reportes de Contabilidad')
+        if sel == len(options):
+            break
+        elif sel == 1:
+            reports_accounting_balance(books_list)
+        elif sel == 2:
+            reports_accounting_book(books_list)
+        else:
+            print('Reporte inexistente...')

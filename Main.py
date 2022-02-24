@@ -29,7 +29,7 @@ def sales_menu():
 def products_menu():
     print("\n----- Menu Productos -----\n")
 
-def accounting_menu():
+def accounting_menu(books):
     while True:
         print("\n----- Menu Contabilidad -----\n")
         options = ["Nueva Cuenta Contable", "Nueva Transacción", "Borrar Cuenta", "Borrar Transacción", "Reportes", "Salir"]
@@ -40,11 +40,21 @@ def accounting_menu():
         sel = int(input("Seleccione una opción: "))
         if sel == len(options):
             break
-
+        if sel == 1:
+            x = new_book(books)
+        elif sel == 2:
+            x = new_transaction(books)
+        elif sel == 3:
+            del_book(books)
+        elif sel == 4:
+            del_tran(books)
+        elif sel == 5:
+            reports_accounting(books)
+        
 def accounts_menu():
     print("\n----- Menu Clientes y Proovedores -----\n")
 
-def main_menu(clients, products, contacts, companies, active_company, active_user, sales, books):
+def main_menu(clients, products, contacts, companies_list, active_company, active_user, sales, books):
     while True:
         print("\n----- PAPER ERP ---- Versión: {} Creado por: {}\nEmpresa: {} Usuario: {}".format(_Version_, _author_, active_company.rs, active_user.name))
         options = ["Ventas", "Productos", "Contabilidad", "Clientes y Proovedores", "Salir"]
@@ -61,7 +71,7 @@ def main_menu(clients, products, contacts, companies, active_company, active_use
         elif sel == 2:
             products_menu()
         elif sel == 3:
-            accounting_menu()
+            accounting_menu(books)
         elif sel == 4:
             accounts_menu()
         else:
@@ -70,4 +80,4 @@ def main_menu(clients, products, contacts, companies, active_company, active_use
         
 # Main
 
-main_menu()
+main_menu(clients, products, contacts, companies_list, active_company, active_user, sales, books)

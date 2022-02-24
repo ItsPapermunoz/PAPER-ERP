@@ -59,3 +59,13 @@ def date_between(between_1, between_2, date):
         return True
     else:
         return False
+
+def display_menu(options, name):
+    '''displays the given list of strings in numeric order as a menu, then propmts the user to select one of the options'''
+    i = 0
+    print('\n----- {} -----'.format(name))
+    for option in options:
+        i += 1
+        print('{}. {}'.format(i, option))
+    sel = int(input('Seleccione una opción: '))
+    return sel
