@@ -71,11 +71,11 @@ class Sale:
         self.disc = sum_lines(1, self.lines)
         self.tax = sum_lines(2, self.lines)
         self.total = self.subtotal - self.disc + self.tax
-        self.trans = []
         self.client = sel_client(clients_list)
         self.add_line(products_list)
         self.date = date_input()
         sales_list.append(self)
+        self.client.add_sale(self)
         write_db(sales_list, "Sales.dat")
         print("Venta: {} registrada exitosamente!".format(self.ref))
             

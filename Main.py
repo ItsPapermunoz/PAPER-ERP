@@ -33,11 +33,7 @@ def accounting_menu(books):
     while True:
         print("\n----- Menu Contabilidad -----\n")
         options = ["Nueva Cuenta Contable", "Nueva Transacción", "Borrar Cuenta", "Borrar Transacción", "Reportes", "Salir"]
-        i = 0
-        for option in options:
-            i += 1
-            print("{}. {}".format(i, option))
-        sel = int(input("Seleccione una opción: "))
+        sel = display_menu(options)
         if sel == len(options):
             break
         if sel == 1:
@@ -51,18 +47,19 @@ def accounting_menu(books):
         elif sel == 5:
             reports_accounting(books)
         
-def accounts_menu():
-    print("\n----- Menu Clientes y Proovedores -----\n")
+def accounts_menu(clients_list):
+    while True:
+        options = ['Nueva Cuenta', 'Nuevo Contacto', 'Eliminar Cuenta', ]
+        sel = display_menu(options, 'Menu Clientes y Proovedores')
+        if sel == len(options):
+            break
+        if sel == 1:
+            pass
 
 def main_menu(clients, products, contacts, companies_list, active_company, active_user, sales, books):
     while True:
-        print("\n----- PAPER ERP ---- Versión: {} Creado por: {}\nEmpresa: {} Usuario: {}".format(_Version_, _author_, active_company.rs, active_user.name))
         options = ["Ventas", "Productos", "Contabilidad", "Clientes y Proovedores", "Salir"]
-        i = 0
-        for option in options:
-            i += 1
-            print("{}. {}".format(i, option))
-        sel = int(input("Seleccione una opción: "))
+        sel = display_menu(options, "PAPER ERP")
         if sel == len(options):
             print("Gracias por haber utilizado PAPER ERP. Hasta pronto!")
             break
@@ -73,7 +70,7 @@ def main_menu(clients, products, contacts, companies_list, active_company, activ
         elif sel == 3:
             accounting_menu(books)
         elif sel == 4:
-            accounts_menu()
+            accounts_menu(clients)
         else:
             print("Opción no encontrada...")
 

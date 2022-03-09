@@ -24,6 +24,21 @@ class Account():
         self.dir_entrega = dir_entrega
         self.contact = contact
         self.executive = executive
+        self.trans = []
+        self.sales = []
+
+    def add_sale(self, sale):
+        self.sales.append(sale)
+        self.saldo += sale.amount
+
+    def add_tran(self, tran):
+        self.trans.append(tran)
+        amount = tran.amount * -1
+        self.saldo += amount
+    
+    def account_reports(self):
+        options = []
+        display_menu(options, self.name)
 
 class Contact():
     def __init__(self, name, phone, email, title):
